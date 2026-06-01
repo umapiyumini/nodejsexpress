@@ -17,4 +17,13 @@ describe('/GET', () => {
                 done();
             });
     });
+
+    it('returns 404 for an unknown route', (done) => {
+        chai.request(`http://localhost:${config.port}`)
+            .get('/nonexistent-page')
+            .end((err, res) => {
+                res.should.have.status(404);
+                done();
+            });
+    });
 });
